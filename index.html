@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>山水人家 · Lynfield Homestead — 世界观大纲</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink-deepest:  oklch(14% 0.018 220);
+      --ink-deep:     oklch(22% 0.022 215);
+      --ink-mid:      oklch(38% 0.025 210);
+      --ink-soft:     oklch(52% 0.020 205);
+      --ink-faint:    oklch(66% 0.015 200);
+      --ink-whisper:  oklch(78% 0.012 195);
+
+      --stone:        oklch(88% 0.008 190);
+      --parchment:    oklch(93% 0.010 85);
+      --parchment-warm: oklch(96% 0.012 80);
+      --parchment-pale: oklch(98% 0.006 80);
+
+      --lichen-green: oklch(48% 0.080 145);
+      --lichen-pale:  oklch(72% 0.055 148);
+      --lichen-ghost: oklch(86% 0.030 150);
+
+      --water-cold:   oklch(44% 0.090 230);
+      --water-pale:   oklch(72% 0.060 230);
+      --water-ghost:  oklch(88% 0.025 230);
+
+      --rust:         oklch(52% 0.110 38);
+      --rust-faint:   oklch(74% 0.068 42);
+      --rust-ghost:   oklch(88% 0.035 45);
+
+      --gold:         oklch(68% 0.130 80);
+      --gold-pale:    oklch(84% 0.072 82);
+
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-24: 6rem;
+      --space-32: 8rem;
+
+      --font-display: 'Cormorant Garamond', 'Noto Serif SC', serif;
+      --font-body: 'Noto Serif SC', serif;
+      --font-accent: 'Fraunces', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--parchment-pale);
+      color: var(--ink-deep);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 60% 40% at 15% 20%, oklch(88% 0.025 150 / 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 85% 75%, oklch(84% 0.028 215 / 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 70% 15%, oklch(84% 0.032 80 / 0.12) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-8);
+    }
+
+    .cover {
+      text-align: center;
+      padding: var(--space-24) 0 var(--space-16);
+      position: relative;
+    }
+
+    .cover-eyebrow {
+      font-family: var(--font-accent);
+      font-size: 0.75rem;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: var(--space-6);
+    }
+
+    .cover-title-zh {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 8vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--ink-deepest);
+      line-height: 1.1;
+      margin-bottom: var(--space-3);
+    }
+
+    .cover-title-en {
+      font-family: var(--font-accent);
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-4);
+    }
+
+    .cover-abbr {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.5em;
+      color: var(--parchment-pale);
+      background: var(--ink-mid);
+      padding: 0.25em 1em;
+      border-radius: 2px;
+      margin-bottom: var(--space-8);
+    }
+
+    .cover-ornament {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin: var(--space-8) 0;
+    }
+    .cover-ornament::before, .cover-ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--ink-whisper), transparent);
+    }
+    .cover-ornament-center {
+      font-size: 1.1rem;
+      color: var(--ink-faint);
+      line-height: 1;
+    }
+
+    .cover-tagline {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--ink-soft);
+      font-style: italic;
+      letter-spacing: 0.05em;
+      max-width: 45ch;
+      margin: 0 auto;
+      line-height: 2;
+    }
+
+    .section {
+      margin-top: var(--space-16);
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--stone);
+      position: relative;
+    }
+
+    .section-num {
+      font-family: var(--font-accent);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--ink-deepest);
+      letter-spacing: 0.1em;
+      flex: 1;
+    }
+
+    .section-title-en {
+      font-family: var(--font-accent);
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-2) var(--space-6);
+      align-items: baseline;
+    }
+
+    .info-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      color: var(--ink-deep);
+      line-height: 1.7;
+    }
+
+    .block-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    @media (max-width: 600px) {
+      .block-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .block-card {
+      background: oklch(96% 0.010 85 / 0.7);
+      border: 1px solid var(--stone);
+      border-radius: 4px;
+      padding: var(--space-4) var(--space-4);
+      text-align: center;
+      transition: background 0.35s ease, border-color 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .block-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--lichen-pale), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .block-card:hover {
+      background: oklch(98% 0.015 148 / 0.6);
+      border-color: var(--lichen-ghost);
+    }
+    .block-card:hover::after { opacity: 1; }
+
+    .block-card-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ink-deepest);
+      letter-spacing: 0.12em;
+      display: block;
+    }
+
+    .block-card-note {
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      margin-top: var(--space-1);
+    }
+
+    .waterway-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    .waterway-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      background: oklch(96% 0.008 220 / 0.5);
+      border: 1px solid var(--water-ghost);
+      border-left: 3px solid var(--water-cold);
+      border-radius: 0 4px 4px 0;
+      transition: background 0.3s ease;
+    }
+
+    .waterway-item:hover {
+      background: oklch(94% 0.018 225 / 0.6);
+    }
+
+    .waterway-item-zh {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink-deepest);
+      letter-spacing: 0.1em;
+    }
+
+    .waterway-item-en {
+      font-family: var(--font-accent);
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .waterway-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      padding: 0.2em 0.7em;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .tag-main   { background: var(--water-ghost); color: var(--water-cold); }
+    .tag-branch { background: oklch(88% 0.030 145); color: var(--lichen-green); }
+    .tag-bay    { background: oklch(88% 0.028 160); color: oklch(38% 0.085 155); }
+    .tag-isle   { background: var(--rust-ghost); color: var(--rust); }
+    .tag-dry    { background: oklch(90% 0.018 45); color: var(--rust); font-style: italic; }
+
+    .landmark-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-4);
+    }
+
+    @media (max-width: 640px) {
+      .landmark-pair { grid-template-columns: 1fr; }
+    }
+
+    .landmark-card {
+      border: 1px solid var(--stone);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .landmark-head {
+      padding: var(--space-4) var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .landmark-name-zh {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--ink-deepest);
+    }
+
+    .landmark-name-en {
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--ink-faint);
+    }
+
+    .landmark-body {
+      padding: var(--space-4) var(--space-6);
+      background: oklch(95% 0.009 90 / 0.5);
+      border-top: 1px solid var(--stone);
+    }
+
+    .landmark-body p {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+    }
+
+    .landmark-loc {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      margin-top: var(--space-3);
+      letter-spacing: 0.06em;
+    }
+
+    .landmark-loc::before {
+      content: '◎';
+      font-size: 0.65rem;
+    }
+
+    .card-temple .landmark-head {
+      background: linear-gradient(135deg, oklch(96% 0.015 215), oklch(94% 0.020 220));
+    }
+
+    .card-altar .landmark-head {
+      background: linear-gradient(135deg, oklch(96% 0.018 295), oklch(94% 0.022 300));
+    }
+
+    .card-kinuei .landmark-head {
+      background: linear-gradient(135deg, oklch(97% 0.005 35), oklch(95% 0.008 40));
+    }
+    .card-kinuei {
+      grid-column: 1 / -1;
+    }
+
+    .bond-section {
+      margin-top: var(--space-4);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (max-width: 640px) {
+      .bond-section { grid-template-columns: 1fr; }
+    }
+
+    .bond-panel {
+      border-radius: 6px;
+      padding: var(--space-6);
+      border: 1px solid var(--stone);
+    }
+
+    .bond-panel-reality {
+      background: linear-gradient(160deg, oklch(95% 0.012 38), oklch(97% 0.008 50));
+      border-color: var(--rust-faint);
+    }
+
+    .bond-panel-myth {
+      background: linear-gradient(160deg, oklch(95% 0.012 280), oklch(97% 0.008 290));
+      border-color: oklch(82% 0.030 285);
+    }
+
+    .bond-panel-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .bond-panel-reality .bond-panel-title { color: var(--rust); }
+    .bond-panel-myth .bond-panel-title     { color: oklch(42% 0.090 285); }
+
+    .bond-text {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.9;
+    }
+
+    .bond-text + .bond-text {
+      margin-top: var(--space-3);
+      padding-top: var(--space-3);
+      border-top: 1px solid oklch(85% 0.012 200 / 0.6);
+    }
+
+    .myth-core {
+      margin-top: var(--space-4);
+      padding: var(--space-6) var(--space-8);
+      background: linear-gradient(160deg, oklch(15% 0.025 220), oklch(20% 0.022 230));
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .myth-core::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, oklch(50% 0.060 215 / 0.15), transparent);
+    }
+
+    .myth-core-badge {
+      font-family: var(--font-accent);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--water-pale);
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: var(--space-3);
+    }
+
+    .myth-core-concept {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 300;
+      color: oklch(90% 0.025 200);
+      letter-spacing: 0.2em;
+      line-height: 1.4;
+      margin-bottom: var(--space-6);
+      position: relative;
+    }
+
+    .myth-points {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .myth-point {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: var(--space-3);
+      align-items: start;
+    }
+
+    .myth-point-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--water-pale);
+      margin-top: 0.65em;
+      box-shadow: 0 0 8px var(--water-cold);
+    }
+
+    .myth-point-text {
+      font-size: 0.88rem;
+      color: oklch(72% 0.020 210);
+      line-height: 1.85;
+    }
+
+    .myth-point-text em {
+      color: oklch(85% 0.035 195);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .conflict-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-4);
+    }
+
+    @media (max-width: 640px) {
+      .conflict-grid { grid-template-columns: 1fr; }
+    }
+
+    .conflict-layer {
+      padding: var(--space-6);
+      border-radius: 6px;
+      border: 1px solid var(--stone);
+      position: relative;
+    }
+
+    .conflict-layer-reality {
+      background: oklch(96% 0.010 45);
+      border-color: var(--rust-faint);
+    }
+
+    .conflict-layer-myth {
+      background: oklch(95% 0.012 240);
+      border-color: var(--water-ghost);
+    }
+
+    .conflict-layer-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-4);
+    }
+
+    .conflict-layer-reality .conflict-layer-title { color: var(--rust); }
+    .conflict-layer-myth .conflict-layer-title     { color: var(--water-cold); }
+
+    .conflict-flow {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .conflict-step {
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .conflict-step::before {
+      content: '→';
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      margin-top: 0.35em;
+      flex-shrink: 0;
+    }
+
+    .conflict-essence {
+      margin-top: var(--space-8);
+      padding: var(--space-6) var(--space-8);
+      background: oklch(96% 0.010 80 / 0.6);
+      border: 1px solid var(--gold-pale);
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .conflict-essence-text {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink-mid);
+      font-style: italic;
+      letter-spacing: 0.08em;
+      line-height: 2;
+    }
+
+    .conflict-essence-text strong {
+      color: var(--ink-deepest);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .landscape-note {
+      margin-top: var(--space-4);
+      padding: var(--space-5) var(--space-6);
+      border-left: 3px solid var(--lichen-pale);
+      background: oklch(96% 0.010 148 / 0.4);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .landscape-note p {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+    }
+
+    .divider {
+      margin: var(--space-16) 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--stone), transparent);
+    }
+    .divider-mark {
+      color: var(--ink-whisper);
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      font-family: var(--font-accent);
+    }
+
+    .footer {
+      margin-top: var(--space-24);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--stone);
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      line-height: 2;
+      font-style: italic;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .section:nth-child(1)  { animation-delay: 0.05s; }
+    .section:nth-child(2)  { animation-delay: 0.10s; }
+    .section:nth-child(3)  { animation-delay: 0.15s; }
+    .section:nth-child(4)  { animation-delay: 0.20s; }
+    .section:nth-child(5)  { animation-delay: 0.25s; }
+    .section:nth-child(6)  { animation-delay: 0.30s; }
+    .section:nth-child(7)  { animation-delay: 0.35s; }
+    .section:nth-child(8)  { animation-delay: 0.40s; }
+
+    .cover { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 70%;
+      background: linear-gradient(to bottom, var(--lichen-pale), transparent);
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .section:hover .section-header::before { opacity: 1; }
+
+    .pillar-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.3rem;
+      margin: var(--space-6) 0 var(--space-4);
+    }
+
+    .pillar {
+      width: 8px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--ink-mid), var(--ink-soft));
+      border-radius: 1px 1px 0 0;
+      opacity: 0.35;
+      position: relative;
+    }
+
+    .pillar::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: -2px; right: -2px;
+      height: 3px;
+      background: var(--ink-soft);
+      border-radius: 0 0 1px 1px;
+      opacity: 0.5;
+    }
+
+    .pillar.lit {
+      background: linear-gradient(to bottom, var(--water-pale), var(--water-cold));
+      opacity: 0.9;
+      box-shadow: 0 0 12px var(--water-cold), 0 0 24px oklch(60% 0.08 220 / 0.3);
+    }
+
+    .pillar-caption {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-4);
+    }
+
+    blockquote {
+      margin: var(--space-6) 0;
+      padding: var(--space-4) var(--space-6);
+      border-left: 2px solid var(--gold-pale);
+      background: oklch(97% 0.010 80 / 0.5);
+      border-radius: 0 4px 4px 0;
+    }
+
+    blockquote p {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 2;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 480px) {
+      .page-wrap { padding: var(--space-8) var(--space-4); }
+      .info-grid { grid-template-columns: 1fr; gap: 0 0; }
+      .info-label { margin-top: var(--space-3); }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Cover -->
+  <header class="cover">
+    <p class="cover-eyebrow">World Bible · 世界观大纲</p>
+    <h1 class="cover-title-zh">山水人家</h1>
+    <p class="cover-title-en">Lynfield Homestead</p>
+    <span class="cover-abbr">LYN</span>
+
+    <div class="cover-ornament">
+      <span class="cover-ornament-center">〰</span>
+    </div>
+
+    <div class="pillar-row">
+      <div class="pillar lit"></div>
+      <div class="pillar lit"></div>
+      <div class="pillar lit"></div>
+      <div class="pillar" style="opacity:0.6"></div>
+      <div class="pillar" style="opacity:0.45"></div>
+      <div class="pillar" style="opacity:0.3"></div>
+      <div class="pillar" style="opacity:0.2"></div>
+      <div class="pillar" style="opacity:0.15"></div>
+      <div class="pillar" style="opacity:0.10"></div>
+    </div>
+    <p class="pillar-caption">奥圭智陆神庙 · 九柱 · 三明六灭</p>
+
+    <p class="cover-tagline">
+      虚实两层并行，以浪漫宿命注解现实荒芜
+    </p>
+  </header>
+
+  <div class="divider"><span class="divider-mark">I</span></div>
+
+  <!-- Section 1: Naming -->
+  <section class="section" id="naming">
+    <div class="section-header">
+      <span class="section-num">§ 01</span>
+      <h2 class="section-title">整体定名</h2>
+      <span class="section-title-en">Official Naming</span>
+    </div>
+    <div class="info-grid">
+      <span class="info-label">中文正式名</span>
+      <span class="info-value">山水人家</span>
+      <span class="info-label">英文正式名</span>
+      <span class="info-value">Lynfield Homestead</span>
+      <span class="info-label">官方简称</span>
+      <span class="info-value"><strong>LYN</strong></span>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-mark">II</span></div>
+
+  <!-- Section 2: Blocks -->
+  <section class="section" id="blocks">
+    <div class="section-header">
+      <span class="section-num">§ 02</span>
+      <h2 class="section-title">区块划分</h2>
+      <span class="section-title-en">Territory Zones</span>
+    </div>
+    <div class="block-grid">
+      <div class="block-card">
+        <span class="block-card-name">美林泉</span>
+        <p class="block-card-note">全域水系核心 · 灵脉所在</p>
+      </div>
+      <div class="block-card">
+        <span class="block-card-name">彩云天</span>
+        <p class="block-card-note">云丘祭台所在地</p>
+      </div>
+      <div class="block-card">
+        <span class="block-card-name">香溪地</span>
+        <p class="block-card-note">灵芷溪输水终点</p>
+      </div>
+      <div class="block-card">
+        <span class="block-card-name">诗家谷</span>
+        <p class="block-card-note">—</p>
+      </div>
+      <div class="block-card">
+        <span class="block-card-name">白沙岛</span>
+        <p class="block-card-note">—</p>
+      </div>
+      <div class="block-card">
+        <span class="block-card-name">清水湾</span>
+        <p class="block-card-note">—</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-mark">III</span></div>
+
+  <!-- Section 3: Water System -->
+  <section class="section" id="waterways">
+    <div class="section-header">
+      <span class="section-num">§ 03</span>
+      <h2 class="section-title">全域水系</h2>
+      <span class="section-title-en">Water System — Lynfield Hydrology</span>
+    </div>
+    <div class="waterway-list">
+      <div class="waterway-item">
+        <div>
+          <div class="waterway-item-zh">灵溪</div>
+        </div>
+        <div class="waterway-item-en">Lynxi Stream</div>
+        <span class="waterway-tag tag-main">主溪</span>
+      </div>
+      <div class="waterway-item" style="border-left-color:var(--rust);background:oklch(96% 0.010 38 / 0.4);">
+        <div>
+          <div class="waterway-item-zh">枯滩</div>
+        </div>
+        <div class="waterway-item-en">Lynsai Creek</div>
+        <span class="waterway-tag tag-dry">已枯竭</span>
+      </div>
+      <div class="waterway-item">
+        <div>
+          <div class="waterway-item-zh">灵沐溪</div>
+        </div>
+        <div class="waterway-item-en">Lynmu Stream</div>
+        <span class="waterway-tag tag-branch">支流</span>
+      </div>
+      <div class="waterway-item" style="border-left-color:oklch(50% 0.105 320);">
+        <div>
+          <div class="waterway-item-zh">灵芷溪</div>
+        </div>
+        <div class="waterway-item-en">Lynzhi Stream</div>
+        <span class="waterway-tag tag-branch">情感纽带</span>
+      </div>
+      <div class="waterway-item">
+        <div>
+          <div class="waterway-item-zh">灵汐溪</div>
+        </div>
+        <div class="waterway-item-en">Lynxi Stream</div>
+        <span class="waterway-tag tag-branch">支流</span>
+      </div>
+      <div class="waterway-item" style="border-left-color:var(--lichen-green);">
+        <div>
+          <div class="waterway-item-zh">青樾湾</div>
+        </div>
+        <div class="waterway-item-en">Green Shade Bay</div>
+        <span class="waterway-tag tag-bay">天然港湾</span>
+      </div>
+      <div class="waterway-item" style="border-left-color:var(--rust-faint);">
+        <div>
+          <div class="waterway-item-zh">汀芜洲</div>
+        </div>
+        <div class="waterway-item-en">Wild Sandbar Islet</div>
+        <span class="waterway-tag tag-isle">江心岛</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-mark">IV</span></div>
+
+  <!-- Section 4: Landmarks -->
+  <section class="section" id="landmarks">
+    <div class="section-header">
+      <span class="section-num">§ 04</span>
+      <h2 class="section-title">两大核心地标</h2>
+      <span class="section-title-en">Core Landmarks</span>
+    </div>
+
+    <div class="landmark-pair">
+      <div class="landmark-card card-temple">
+        <div class="landmark-head">
+          <div class="landmark-name-zh">奥圭智陆神庙</div>
+          <div class="landmark-name-en">Augizil Temple · Auguizhul Shrine</div>
+          <div style="display:flex;gap:3px;margin-top:0.5rem;">
+            <div class="pillar lit" style="height:22px;width:5px;"></div>
+            <div class="pillar lit" style="height:22px;width:5px;"></div>
+            <div class="pillar lit" style="height:22px;width:5px;"></div>
+            <div class="pillar" style="height:22px;width:5px;opacity:0.55"></div>
+            <div class="pillar" style="height:22px;width:5px;opacity:0.38"></div>
+            <div class="pillar" style="height:22px;width:5px;opacity:0.25"></div>
+            <div class="pillar" style="height:22px;width:5px;opacity:0.15"></div>
+            <div class="pillar" style="height:22px;width:5px;opacity:0.10"></div>
+            <div class="pillar" style="height:22px;width:5px;opacity:0.07"></div>
+          </div>
+        </div>
+        <div class="landmark-body">
+          <p>九根长方体立柱装置，以灵脉共振纹路为印记。活水同频时发光，象征灵韵与情脉相通。今已锈蚀沉寂，不再发光。</p>
+          <p class="landmark-loc">美林泉 · 灵溪支流旁</p>
+        </div>
+      </div>
+      <div class="landmark-card card-altar">
+        <div class="landmark-head">
+          <div class="landmark-name-zh">云丘祭台</div>
+          <div class="landmark-name-en">Unqiu Altar · Uncolis Shrine</div>
+          <div style="margin-top:0.5rem;font-size:1.1rem;opacity:0.5;letter-spacing:0.1em;">❧ ❧ ❧</div>
+        </div>
+        <div class="landmark-body">
+          <p>紫藤缠绕，谓之情藤，络绕灵韵与情愫。望霞树为两灵者遥望相守、寄愿传情之寄托。</p>
+          <p class="landmark-loc">彩云天</p>
+        </div>
+      </div>
+      <div class="landmark-card card-kinuei">
+        <div class="landmark-head">
+          <div class="landmark-name-zh">绡霙</div>
+          <div class="landmark-name-en">Kinuei</div>
+          <div style="margin-top:0.5rem;font-size:1.1rem;opacity:0.5;letter-spacing:0.1em;">✿ ✿ ✿</div>
+        </div>
+        <div class="landmark-body">
+          <p>染井吉野樱，亲手种植于灵溪上游岸畔。花瓣薄如绡丝，霙喻落花如雪如霰；曾顺灵芷溪漂往香溪地，水断后花瓣落于枯滩，树仍年复一年开花。</p>
+          <p class="landmark-loc">美林泉 · 灵溪上游岸畔</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-mark">V</span></div>
+
+  <!-- Section 5: Bond -->
+  <section class="section" id="bond">
+    <div class="section-header">
+      <span class="section-num">§ 05</span>
+      <h2 class="section-title">美林泉 × 香溪地 羁绊</h2>
+      <span class="section-title-en">The Bond — Lynspring & Xianxi</span>
+    </div>
+    <div class="bond-section">
+      <div class="bond-panel bond-panel-reality">
+        <div class="bond-panel-title">⚙ 现实羁绊</div>
+        <div class="bond-text">
+          灵芷溪是美林泉天然向外输水的唯一水道，也是香溪地唯一自然水源。
+        </div>
+        <div class="bond-text">
+          小区工程缺陷 + 后期维护缺失 → 灵溪干涸 → 灵芷溪断流淤积 → 香溪地失去活水，植被枯萎荒芜。
+        </div>
+      </div>
+      <div class="bond-panel bond-panel-myth">
+        <div class="bond-panel-title">✦ 神话羁绊</div>
+        <div class="bond-text">
+          灵芷溪是天然纽带：泉水滋养香溪地芷草，花开顺流而下，传情寄意。
+        </div>
+        <div class="bond-text">
+          灵溪枯竭后，花瓣再无水道可循，只能落于枯滩之上。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-mark">VI</span></div>
+
+  <!-- Section 6: Mythology -->
+  <section class="section" id="mythology">
+    <div class="section-header">
+      <span class="section-num">§ 06</span>
+      <h2 class="section-title">神话体系</h2>
+      <span class="section-title-en">Mythology — Water-Mountain Folk</span>
+    </div>
+
+    <blockquote>
+      <p>水山人 —— 与山水共生的灵脉先民</p>
+    </blockquote>
+
+    <div class="myth-core">
+      <div class="myth-core-badge">Core Image · 核心意象</div>
+      <div class="myth-core-concept">水 · 山 · 人</div>
+      <div class="myth-points">
+        <div class="myth-point">
+          <div class="myth-point-dot"></div>
+          <div class="myth-point-text">
+            <em>灵溪</em>是整片土地的灵脉核心，也是水山人眼中情意的灵流。
+          </div>
+        </div>
+        <div class="myth-point">
+          <div class="myth-point-dot"></div>
+          <div class="myth-point-text">
+            <em>奥圭智陆神庙</em>九柱纹路为灵脉共振印记，活水同频可发光，象征灵韵与情脉相通；如今锈蚀沉寂。
+          </div>
+        </div>
+        <div class="myth-point">
+          <div class="myth-point-dot"></div>
+          <div class="myth-point-text">
+            <em>云丘祭台</em>紫藤为情藤，缠绕灵韵与情愫；望霞树是两灵者遥望相守、寄愿相托之寄托。
+          </div>
+        </div>
+        <div class="myth-point">
+          <div class="myth-point-dot"></div>
+          <div class="myth-point-text">
+            <em>青樾湾</em>林深幽静，是水山人隐秘相会、静守心意的地方。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-mark">VII</span></div>
+
+  <!-- Section 7: Landscape Status -->
+  <section class="section" id="status">
+    <div class="section-header">
+      <span class="section-num">§ 07</span>
+      <h2 class="section-title">景观现状原则</h2>
+      <span class="section-title-en">Landscape Status — Editorial Policy</span>
+    </div>
+    <div class="landscape-note">
+      <p>
+        所有景观描写<strong>仅保留两层</strong>：
+        <br>① <strong>原生自然样貌</strong>——建造之初、植被/水系/装置本该呈现的风貌；
+        <br>② <strong>现实衰败现状</strong>——工程缺陷、疏于维护后的真实破败状态。
+        <br><br>
+        不添加任何虚构商业规划、改造臆想或未来愿景。衰败即终态，神话在此之上赋魅，而非覆盖。
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-mark">VIII</span></div>
+
+  <!-- Section 8: Core Conflict -->
+  <section class="section" id="conflict">
+    <div class="section-header">
+      <span class="section-num">§ 08</span>
+      <h2 class="section-title">世界观核心冲突</h2>
+      <span class="section-title-en">Core Conflict — Two Layers</span>
+    </div>
+    <div class="conflict-grid">
+      <div class="conflict-layer conflict-layer-reality">
+        <div class="conflict-layer-title">现实层</div>
+        <div class="conflict-flow">
+          <div class="conflict-step">先天工程防水缺陷</div>
+          <div class="conflict-step">后期长期失管疏于维护</div>
+          <div class="conflict-step">美林泉水系整体枯竭</div>
+          <div class="conflict-step">主溪支流陆续断流</div>
+          <div class="conflict-step">整片小区景观荒芜，野生草木回潮侵占</div>
+        </div>
+      </div>
+      <div class="conflict-layer conflict-layer-myth">
+        <div class="conflict-layer-title">神话层</div>
+        <div class="conflict-flow">
+          <div class="conflict-step">人类破坏自然水系秩序</div>
+          <div class="conflict-step">灵脉流转中断</div>
+          <div class="conflict-step">土地失韵、草木失机</div>
+          <div class="conflict-step">一段先民情意沦为永久遗憾</div>
+          <div class="conflict-step">以浪漫宿命注解现实荒芜</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="conflict-essence">
+      <p class="conflict-essence-text">
+        <strong>本质</strong>：虚实两层并行，互不覆盖，相互映照。
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-mark">❧</span></div>
+
+  <footer class="footer">
+    <p class="footer-text">
+      山水人家 · Lynfield Homestead · LYN<br>
+      <span style="font-size:0.7rem;opacity:0.6;">以真实景观为原型 · 虚实并行</span>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
