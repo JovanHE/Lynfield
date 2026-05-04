@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云丘祭台 · Unqiu Altar</title>
+<style>
+/* ═══ Variables ═══ */
+:root {
+  --g1: #1d1d1f;
+  --g2: #424245;
+  --g3: #6e6e73;
+  --g4: #a1a1a6;
+  --g5: #d2d2d7;
+  --g6: #e8e8ed;
+  --w: #ffffff;
+  --purple: #9b6dff;
+  --purple-soft: rgba(155, 109, 255, 0.15);
+  --purple-glow: rgba(155, 109, 255, 0.4);
+  --rose: #e8a0bf;
+  --rose-soft: rgba(232, 160, 191, 0.1);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease2: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Noto Serif SC", "PingFang SC", "Helvetica Neue", sans-serif;
+  background: #110d1a;
+  color: var(--w);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ═══ Back Nav ═══ */
+.back-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 32px;
+  background: rgba(17, 13, 26, 0.7);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.back-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.25s;
+  letter-spacing: 0.02em;
+}
+
+.back-nav a:hover { color: rgba(255, 255, 255, 0.95); }
+
+.back-nav .sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); }
+
+.back-nav .page-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.04em;
+}
+
+/* ═══ Hero ═══ */
+.hero-altar {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Botanical night sky background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    /* Soft radial from top */
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(155, 109, 255, 0.12) 0%, transparent 60%),
+    /* Wisteria glow cluster left */
+    radial-gradient(ellipse 30% 50% at 20% 30%, rgba(155, 109, 255, 0.2) 0%, transparent 70%),
+    /* Rose glow cluster right */
+    radial-gradient(ellipse 25% 40% at 75% 25%, rgba(232, 160, 191, 0.15) 0%, transparent 70%),
+    /* Ground mist */
+    radial-gradient(ellipse 100% 30% at 50% 100%, rgba(50, 30, 70, 0.6) 0%, transparent 70%),
+    /* Deep night base */
+    linear-gradient(to bottom, #0a0812 0%, #110d1a 40%, #1a1228 100%);
+  animation: altarAmbient 10s ease-in-out infinite;
+}
+
+@keyframes altarAmbient {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
+}
+
+/* Floating wisteria clusters */
+.wisteria-clusters {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cluster {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: sway 6s ease-in-out infinite;
+}
+
+.cluster-drop {
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, rgba(155, 109, 255, 0.6), rgba(155, 109, 255, 0.1));
+}
+
+.cluster:nth-child(1) { left: 15%; top: 15%; animation-delay: 0s; }
+.cluster:nth-child(1) .cluster-drop:nth-child(1) { height: 60px; }
+.cluster:nth-child(1) .cluster-drop:nth-child(2) { height: 45px; margin-left: 5px; }
+.cluster:nth-child(1) .cluster-drop:nth-child(3) { height: 55px; margin-left: 2px; }
+.cluster:nth-child(1) .cluster-drop:nth-child(4) { height: 30px; margin-left: 6px; }
+
+.cluster:nth-child(2) { left: 28%; top: 10%; animation-delay: 1.5s; }
+.cluster:nth-child(2) .cluster-drop:nth-child(1) { height: 80px; }
+.cluster:nth-child(2) .cluster-drop:nth-child(2) { height: 55px; margin-left: 8px; }
+.cluster:nth-child(2) .cluster-drop:nth-child(3) { height: 65px; margin-left: 3px; }
+
+.cluster:nth-child(3) { right: 20%; top: 20%; animation-delay: 0.8s; }
+.cluster:nth-child(3) .cluster-drop:nth-child(1) { height: 50px; background: linear-gradient(to bottom, rgba(232, 160, 191, 0.5), rgba(232, 160, 191, 0.08)); }
+.cluster:nth-child(3) .cluster-drop:nth-child(2) { height: 40px; margin-left: 6px; }
+.cluster:nth-child(3) .cluster-drop:nth-child(3) { height: 55px; }
+
+.cluster:nth-child(4) { right: 35%; top: 12%; animation-delay: 2.2s; }
+.cluster:nth-child(4) .cluster-drop:nth-child(1) { height: 70px; background: linear-gradient(to bottom, rgba(200, 150, 255, 0.45), rgba(200, 150, 255, 0.08)); }
+.cluster:nth-child(4) .cluster-drop:nth-child(2) { height: 50px; margin-left: 5px; }
+.cluster:nth-child(4) .cluster-drop:nth-child(3) { height: 60px; margin-left: 2px; }
+.cluster:nth-child(4) .cluster-drop:nth-child(4) { height: 35px; margin-left: 7px; }
+
+.cluster:nth-child(5) { left: 8%; top: 25%; animation-delay: 0.4s; }
+.cluster:nth-child(5) .cluster-drop:nth-child(1) { height: 40px; background: linear-gradient(to bottom, rgba(180, 130, 240, 0.35), transparent); }
+.cluster:nth-child(5) .cluster-drop:nth-child(2) { height: 30px; margin-left: 4px; }
+
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  25% { transform: rotate(1deg) translateX(3px); }
+  75% { transform: rotate(-1deg) translateX(-3px); }
+}
+
+/* Stars */
+.stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(155, 109, 255, 0.7);
+  margin-bottom: 16px;
+  animation: fadeUp 1s var(--ease) 0.2s both;
+}
+
+.hero-title {
+  font-size: clamp(42px, 8vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--w);
+  margin-bottom: 6px;
+  animation: fadeUp 1s var(--ease) 0.35s both;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 3vw, 22px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.06em;
+  font-style: italic;
+  margin-bottom: 32px;
+  animation: fadeUp 1s var(--ease) 0.5s both;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(155, 109, 255, 0.9);
+  padding: 8px 24px;
+  border: 1px solid rgba(155, 109, 255, 0.3);
+  border-radius: 980px;
+  backdrop-filter: blur(10px);
+  animation: fadeUp 1s var(--ease) 0.65s both;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease) 1.2s both;
+}
+
+.hero-scroll-hint span {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══ Divider ═══ */
+.section-divider {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease2), transform 0.8s var(--ease2);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══ Intro ═══ */
+.section { max-width: 860px; margin: 0 auto; padding: 100px 32px; }
+
+.intro {
+  text-align: center;
+  padding: 80px 32px 60px;
+}
+
+.intro-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(155, 109, 255, 0.5);
+  margin-bottom: 20px;
+}
+
+.intro-lead {
+  font-size: clamp(20px, 4vw, 30px);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ═══ Two Elements ═══ */
+.elements-section { padding: 60px 32px; }
+
+.section-num {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(155, 109, 255, 0.45);
+  margin-bottom: 12px;
+}
+
+.section-heading {
+  font-size: clamp(26px, 5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--w);
+  margin-bottom: 6px;
+}
+
+.section-sub {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 48px;
+}
+
+.elements-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .elements-grid { grid-template-columns: 1fr; }
+}
+
+.element-card {
+  border-radius: 24px;
+  padding: 44px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease);
+}
+
+.element-card:hover { transform: translateY(-4px); }
+
+.element-card.wisteria {
+  background: linear-gradient(135deg, rgba(155, 109, 255, 0.12), rgba(100, 60, 180, 0.08));
+  border: 1px solid rgba(155, 109, 255, 0.2);
+}
+
+.element-card.wish霞 {
+  background: linear-gradient(135deg, rgba(232, 160, 191, 0.1), rgba(180, 80, 130, 0.06));
+  border: 1px solid rgba(232, 160, 191, 0.18);
+}
+
+.element-card-icon {
+  font-size: 36px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.element-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--w);
+  margin-bottom: 4px;
+}
+
+.element-card-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.04em;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.element-card p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+}
+
+/* ═══ Meaning ═══ */
+.meaning-section { padding: 60px 32px; }
+
+.meaning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .meaning-grid { grid-template-columns: 1fr; }
+}
+
+.meaning-item {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.meaning-item:hover { background: rgba(255, 255, 255, 0.07); }
+
+.meaning-num {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(155, 109, 255, 0.5);
+  margin-bottom: 10px;
+}
+
+.meaning-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--w);
+  margin-bottom: 8px;
+}
+
+.meaning-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.65;
+}
+
+/* ═══ Lore ═══ */
+.lore-section {
+  padding: 60px 32px;
+  background: rgba(155, 109, 255, 0.03);
+}
+
+.lore-block { max-width: 660px; margin: 0 auto; }
+
+.lore-text {
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+.lore-text + .lore-text { margin-top: 20px; }
+
+.lore-quote {
+  font-size: clamp(17px, 3vw, 22px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.65;
+  font-style: italic;
+  padding: 28px 0;
+  border-left: 3px solid rgba(155, 109, 255, 0.4);
+  padding-left: 24px;
+  margin: 40px 0;
+}
+
+/* ═══ Location ═══ */
+.location-section { padding: 60px 32px; }
+
+.location-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.location-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(155, 109, 255, 0.4), transparent);
+}
+
+.location-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.5; }
+
+.location-name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--w);
+  margin-bottom: 8px;
+}
+
+.location-desc { font-size: 14px; color: rgba(255, 255, 255, 0.35); letter-spacing: 0.04em; }
+
+/* ═══ Footer ═══ */
+.footer { text-align: center; padding: 60px 32px 80px; }
+.footer p { font-size: 13px; color: rgba(255, 255, 255, 0.25); line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<!-- Back Nav -->
+<nav class="back-nav">
+  <a href="index.html">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    山水人家
+  </a>
+  <span class="sep"></span>
+  <span class="page-title">云丘祭台</span>
+</nav>
+
+<!-- Hero -->
+<section class="hero-altar">
+  <div class="hero-bg"></div>
+  <div class="stars" id="stars"></div>
+  <div class="wisteria-clusters">
+    <div class="cluster"><div class="cluster-drop"></div><div class="cluster-drop"></div><div class="cluster-drop"></div><div class="cluster-drop"></div></div>
+    <div class="cluster"><div class="cluster-drop"></div><div class="cluster-drop"></div><div class="cluster-drop"></div></div>
+    <div class="cluster"><div class="cluster-drop"></div><div class="cluster-drop"></div><div class="cluster-drop"></div></div>
+    <div class="cluster"><div class="cluster-drop"></div><div class="cluster-drop"></div><div class="cluster-drop"></div><div class="cluster-drop"></div></div>
+    <div class="cluster"><div class="cluster-drop"></div><div class="cluster-drop"></div></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Core Landmark · 02</p>
+    <h1 class="hero-title">云丘祭台</h1>
+    <p class="hero-sub">Unqiu Altar</p>
+    <span class="hero-tag">紫藤情藤 · 望霞之树</span>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Intro -->
+<section class="section intro">
+  <p class="intro-eyebrow reveal">Landmark · 核心地标</p>
+  <p class="intro-lead reveal">
+    紫藤缠绕，谓之情藤，<br>
+    络绕灵韵与情愫。<br>
+    望霞树为两灵者遥望相守、<br>
+    寄愿传情之寄托。
+  </p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Two Elements -->
+<section class="section elements-section">
+  <p class="section-num reveal">01</p>
+  <h2 class="section-heading reveal">两大意象</h2>
+  <p class="section-sub reveal">Two Elements</p>
+
+  <div class="elements-grid">
+    <div class="element-card wisteria reveal">
+      <span class="element-card-icon">❧</span>
+      <div class="element-card-title">情藤</div>
+      <div class="element-card-sub">Wisteria · 紫藤</div>
+      <p>紫藤攀附于祭台木架之上，花穗垂落如瀑。藤蔓在传说中是情愫的具象——缠绕、蔓延、不可分离。水山人视紫藤为情意载体，花开即情动，花落即情逝。</p>
+    </div>
+    <div class="element-card wish霞 reveal">
+      <span class="element-card-icon">✦</span>
+      <div class="element-card-title">望霞树</div>
+      <div class="element-card-sub">Wish Tree · 夕照之木</div>
+      <p>一棵枝干舒展的乔木，位于祭台旁侧高地。两灵者分居山之两侧时，便各立于此树之下，隔山遥望，以枝叶摆动传情。风吹树梢，是为回应；枝叶静止，是为思念。</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Meaning -->
+<section class="section meaning-section">
+  <p class="section-num reveal">02</p>
+  <h2 class="section-heading reveal">祭台三义</h2>
+  <p class="section-sub reveal">Three Meanings of the Altar</p>
+
+  <div class="meaning-grid">
+    <div class="meaning-item reveal">
+      <div class="meaning-num">壹</div>
+      <div class="meaning-title">寄情</div>
+      <div class="meaning-text">以紫藤为书，以花穗为字，将不可言说之情意，托付于攀援生长之物。</div>
+    </div>
+    <div class="meaning-item reveal">
+      <div class="meaning-num">贰</div>
+      <div class="meaning-title">相望</div>
+      <div class="meaning-text">望霞树下，两人各立一端，隔山相望，无需言说，枝叶已知心意。</div>
+    </div>
+    <div class="meaning-item reveal">
+      <div class="meaning-num">叁</div>
+      <div class="meaning-title">传愿</div>
+      <div class="meaning-text">风起时枝叶交缠，是愿望传递的信号；风止时各守一方，是等待的默许。</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Lore -->
+<section class="section lore-section">
+  <p class="section-num reveal">03</p>
+  <h2 class="section-heading reveal">祭台志</h2>
+  <p class="section-sub reveal">Altar Chronicle</p>
+
+  <div class="lore-block">
+    <p class="lore-text reveal">
+      云丘祭台，建于彩云天高地之上，非供奉神祇，而是承载情感之所。水山人相信，情意若无寄托，便如流水散逸；唯有落于实物，情意方得存续。
+    </p>
+    <p class="lore-text reveal">
+      祭台以当地青石砌成，低矮简朴，不设围栏，不加雕饰。唯紫藤攀援其上，每年春末花开如瀑，花穗垂落时可及人肩。花香清淡，如远山来信。
+    </p>
+    <blockquote class="lore-quote reveal">
+      "情藤不断，望霞不死，<br>
+      则两山之间，犹有相守之人。"
+    </blockquote>
+    <p class="lore-text reveal">
+      水断之后，紫藤仍在生长，只是花期紊乱。望霞树仍立于高地之上，只是无人再于此遥望。水山人相信，只要藤还活着，树还在开花，情意便不曾真正消亡——只是等待另一个雨季。
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Location -->
+<section class="section location-section">
+  <p class="section-num reveal">04</p>
+  <h2 class="section-heading reveal">所在</h2>
+  <p class="section-sub reveal">Location</p>
+
+  <div class="location-card reveal">
+    <div class="location-icon">◎</div>
+    <div class="location-name">彩云天</div>
+    <div class="location-desc">Caiyun Tian · Cloud-Sky Highland</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<footer class="footer">
+  <p>山水人家 · Lynfield Homestead · LYN<br><span style="opacity: 0.35; font-size: 12px;">Unqiu Altar · 云丘祭台</span></p>
+</footer>
+
+<script>
+// Stars
+const starsContainer = document.getElementById('stars');
+for (let i = 0; i < 40; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 60 + '%';
+  star.style.animationDelay = Math.random() * 3 + 's';
+  star.style.width = (Math.random() * 1.5 + 0.5) + 'px';
+  star.style.height = star.style.width;
+  starsContainer.appendChild(star);
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
