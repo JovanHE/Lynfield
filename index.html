@@ -61,10 +61,10 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(5, 5, 15, 0.45);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--g6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: background 0.3s;
 }
 
@@ -81,7 +81,7 @@ body {
 .nav-logo {
   font-size: 15px;
   font-weight: 600;
-  color: var(--g1);
+  color: rgba(255, 255, 255, 0.9);
   letter-spacing: 0.04em;
   text-decoration: none;
 }
@@ -94,13 +94,13 @@ body {
 
 .nav-links a {
   font-size: 12px;
-  color: var(--g2);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .nav-links a:hover {
-  color: var(--g1);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 @media (max-width: 640px) {
@@ -120,11 +120,20 @@ body {
   overflow: hidden;
 }
 
+/* Image background + dark overlay for text readability */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 40%, var(--wm) 0%, var(--w) 100%);
+  background:
+    /* Top fade */
+    linear-gradient(to bottom, rgba(5, 5, 15, 0.55) 0%, rgba(5, 5, 15, 0.15) 30%, rgba(5, 5, 15, 0.05) 60%, rgba(5, 5, 15, 0.3) 100%),
+    /* Left vignette */
+    radial-gradient(ellipse 70% 100% at 0% 50%, rgba(5, 5, 15, 0.4) 0%, transparent 60%),
+    /* Right vignette */
+    radial-gradient(ellipse 70% 100% at 100% 50%, rgba(5, 5, 15, 0.4) 0%, transparent 60%),
+    /* Image */
+    url(hero-bg.png) center center / cover no-repeat;
   z-index: 0;
 }
 
@@ -138,7 +147,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--g4);
+  color: rgba(255, 255, 255, 0.65);
   margin-bottom: 16px;
 }
 
@@ -147,15 +156,17 @@ body {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  color: var(--g1);
+  color: #ffffff;
   margin-bottom: 6px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .hero-sub {
   font-size: clamp(18px, 3.5vw, 28px);
   font-weight: 400;
-  color: var(--g3);
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 20px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
 }
 
 .hero-abbr {
@@ -163,11 +174,13 @@ body {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5em;
-  color: var(--ac);
+  color: rgba(255, 220, 180, 0.9);
   padding: 6px 20px;
-  border: 1.5px solid var(--as);
+  border: 1.5px solid rgba(255, 220, 180, 0.3);
   border-radius: 980px;
   margin-bottom: 36px;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .hero-pillars {
@@ -180,32 +193,34 @@ body {
   width: 6px;
   height: 32px;
   border-radius: 3px;
-  background: var(--g5);
+  background: rgba(255, 255, 255, 0.35);
   transition: background 0.6s var(--ease), box-shadow 0.6s var(--ease);
 }
 
 .hero-pillar.lit {
-  background: var(--wt);
-  box-shadow: 0 0 12px rgba(74, 144, 184, 0.4);
+  background: rgba(74, 144, 184, 0.9);
+  box-shadow: 0 0 12px rgba(74, 144, 184, 0.6);
 }
 
 .hero-pillar.dim {
-  opacity: 0.3;
+  opacity: 0.35;
 }
 
 .hero-cap {
   font-size: 13px;
-  color: var(--g4);
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 32px;
   letter-spacing: 0.02em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
 
 .hero-tag {
   font-size: 17px;
   font-weight: 300;
-  color: var(--g3);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.7;
   max-width: 440px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* ═══ Section Shared ═══ */
